@@ -1,0 +1,2 @@
+updateSpaceGameAddons.ps1
+buildGodot.ps1

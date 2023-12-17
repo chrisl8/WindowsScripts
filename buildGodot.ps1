@@ -1,3 +1,5 @@
+
+
 c:
 cd C:\Users\chris\CLionProjects\godot\
 gh repo sync chrisl8/godot
@@ -11,3 +13,4 @@ git pull
 npm i
 npm run package
 cp .\godot-tools-1.3.1.vsix D:\Dropbox\allWindows\GodotEngines\godot-vs-code-plugin
+cd

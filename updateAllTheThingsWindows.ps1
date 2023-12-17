@@ -23,7 +23,7 @@ python.exe -m pip install --upgrade pip
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "Install Python Packages" -ForegroundColor Yellow -BackgroundColor black
 pip install pip-review
-pip install gdtoolkit
+pip install "gdtoolkit==4.*"
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "Checking for Python Package Updates" -ForegroundColor Yellow -BackgroundColor black
@@ -45,3 +45,7 @@ Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseMode
 Write-Host "" -ForegroundColor Blue -BackgroundColor black
 Write-Host "Check Video Driver version" -ForegroundColor Blue -BackgroundColor black
 &"C:\Program Files\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
+
+Write-Host "" -ForegroundColor Blue -BackgroundColor black
+Write-Host "Check for MS Store Updates" -ForegroundColor Blue -BackgroundColor black
+start ms-windows-store:
