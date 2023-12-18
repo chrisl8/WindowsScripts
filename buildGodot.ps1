@@ -3,7 +3,8 @@ Set-Location "C:\Users\chris\CLionProjects\godot\"
 gh repo sync chrisl8/godot
 gh repo sync chrisl8/godot --branch 4.2
 git stash --quiet
-$output = git status --porcelain
+git fetch
+$output = git diff --name-only origin/4.2
 git stash pop --quiet
 if ($output) {
     git pull
@@ -16,7 +17,8 @@ if ($output) {
 
 Write-Host "Checking VSCode Plugin..." -ForegroundColor Yellow -BackgroundColor black
 Set-Location "C:\Dev\godot-vscode-plugin\"
-$output = git status --porcelain
+git fetch
+$output = git diff --name-only origin/master
 if ($output) {
     git pull
     npm i
