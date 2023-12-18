@@ -27,7 +27,6 @@ if(!(test-path -PathType container $path))
 Set-Location "c:\Dev\godot-mirror"
 git pull
 Copy-Item -R C:\Dev\godot-mirror\addons\Mirror C:\Dev\space-game\addons
-bash patchGodotMirrorAddon.sh
 
 Write-Host "Checking UUID addon..." -ForegroundColor Yellow -BackgroundColor black
 $path = "C:\Dev\godot-uuid"
@@ -40,7 +39,7 @@ Set-Location "c:\Dev\godot-uuid"
 git pull
 Copy-Item -R C:\Dev\godot-uuid\addons\uuid C:\Dev\space-game\addons
 
-rm -R -Force C:\Dev\space-game-xr\addons
+Remove-Item -R -Force C:\Dev\space-game-xr\addons
 Copy-Item -R C:\Dev\space-game\addons C:\Dev\space-game-xr
 
 Write-Host "Checking XR addon..." -ForegroundColor Yellow -BackgroundColor black
@@ -54,4 +53,6 @@ Set-Location "c:\Dev\godot-xr-tools"
 git pull
 Copy-Item -R C:\Dev\godot-xr-tools\addons\godot-xr-tools C:\Dev\space-game-xr\addons
 
-Set-Location
+# This patch is for web export, but it breaks the Mirror in XR export.
+Push-Location $PSScriptRoot
+bash patchGodotMirrorAddon.sh
