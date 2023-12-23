@@ -48,4 +48,4 @@ Write-Host "Check Video Driver version" -ForegroundColor Blue -BackgroundColor b
 
 Write-Host "" -ForegroundColor Blue -BackgroundColor black
 Write-Host "Check for MS Store Updates" -ForegroundColor Blue -BackgroundColor black
-start ms-windows-store:
+Start-Process ms-windows-store:

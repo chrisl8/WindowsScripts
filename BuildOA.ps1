@@ -1,5 +1,5 @@
 # Clear old build files
-rm -Recurse -Force 'C:\Users\chris\OneDrive\Pandorica\ObsoleteAeonBuild\*'
+Remove-Item -Recurse -Force 'C:\Users\chris\OneDrive\Pandorica\ObsoleteAeonBuild\*'
 
 # Run Unity build script
 # Piping output allows us to see it and makes script wait for .exe run to finish
@@ -7,7 +7,7 @@ rm -Recurse -Force 'C:\Users\chris\OneDrive\Pandorica\ObsoleteAeonBuild\*'
 & 'C:\Program Files\Unity\Hub\Editor\2022.3.14f1\Editor\Unity.exe' -quit -batchmode -nographics -executeMethod Builder.BuildProject -projectPath 'D:\Unity\Obsolete Aeon\' | Out-Default
 
 # Copy in the Steam ID file so we can play multiplayer
-cp 'D:\Unity\Obsolete Aeon\steam_appid.txt' C:\Users\chris\OneDrive\Pandorica\ObsoleteAeonBuild
+Copy-Item 'D:\Unity\Obsolete Aeon\steam_appid.txt' C:\Users\chris\OneDrive\Pandorica\ObsoleteAeonBuild
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "NOTICE:" -ForegroundColor Yellow -BackgroundColor black

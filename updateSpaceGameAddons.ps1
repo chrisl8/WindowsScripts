@@ -56,3 +56,4 @@ Copy-Item -R C:\Dev\godot-xr-tools\addons\godot-xr-tools C:\Dev\space-game-xr\ad
 # This patch is for web export, but it breaks the Mirror in XR export.
 Push-Location $PSScriptRoot
 bash patchGodotMirrorAddon.sh
+Pop-Location
