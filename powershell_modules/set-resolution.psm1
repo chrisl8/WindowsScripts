@@ -6,6 +6,10 @@ function Set-Scaling {
     # $scaling = 1 : 125%
     # $scaling = 2 : 150%
     # $scaling = 3 : 175%
+    # Note on some systems 0 may be 125% or higher and you will need to use negatives to get 100%
+    # but this is a uint so you cannot.
+    # https://learn.microsoft.com/en-us/answers/questions/197944/batch-file-or-tool-like-powertoy-to-change-the-res
+    # In such cases -1 would be 4294967295, -2 would be 4294967294, etc.
     param($scaling)
     $source = @'
     [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
