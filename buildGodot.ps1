@@ -10,6 +10,7 @@ if ($output) {
     git pull
     scons production=yes
     Copy-Item .\bin\* D:\Dropbox\allWindows\GodotEngines\custom\
+    Copy-Item .\bin\* "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\custom"
 } else {
     Write-Host "No changes."
 }
@@ -24,6 +25,7 @@ if ($output) {
     npm i
     npm run package
     Copy-Item .\godot-tools-1.3.1.vsix D:\Dropbox\allWindows\GodotEngines\godot-vs-code-plugin
+    Copy-Item .\godot-tools-1.3.1.vsix "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\godot-vs-code-plugin"
     Set-Location
 } else {
     Write-Host "No changes."
