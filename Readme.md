@@ -17,5 +17,5 @@ https://stackoverflow.com/a/6040725/4982408
 
 Import modules from any folder:
 https://stackoverflow.com/a/21139850/4982408
-`import-module .\powershell_modules\set-resolution.psm1`
+`import-module .\powershell_modules\set-scaling.psm1`
 

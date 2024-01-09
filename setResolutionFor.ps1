@@ -36,7 +36,7 @@ foreach ($i in 1..3) {
     }
 }
 
-import-module .\powershell_modules\set-resolution.psm1
+import-module .\powershell_modules\set-scaling.psm1
 
 Write-Output "Setting scaling to $scaling"
 Set-Scaling -scaling $scaling

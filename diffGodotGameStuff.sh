@@ -1,0 +1,3 @@
+diff --color --exclude=".idea" --exclude=".git" --exclude=".godot" --exclude="addons" -r /mnt/c/Dev/space-game/.github/workflows/static.yml /mnt/c/Dev/crater-manipulator/.github/workflows/static.yml
+diff --color --exclude=".idea" --exclude=".git" --exclude=".godot" --exclude="addons" -r /mnt/c/Dev/space-game/export-helpers/server/restart-server.sh /mnt/c/Dev/crater-manipulator/export-helpers/server/restart-server.sh
+diff --color --exclude=".idea" --exclude=".git" --exclude=".godot" --exclude="addons" -r /mnt/c/Dev/space-game/export-helpers/server/run-server.sh /mnt/c/Dev/crater-manipulator/export-helpers/server/run-server.sh

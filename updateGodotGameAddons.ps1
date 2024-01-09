@@ -6,6 +6,14 @@ if (!(Test-Path $FolderName)) {
     #Write-Host "Folder Created successfully"
 }
 
+$FolderName = "C:\Dev\crater-manipulator\addons"
+Remove-Item -R -Force $FolderName
+if (!(Test-Path $FolderName)) {
+    #PowerShell Create directory if not exists
+    New-Item $FolderName -ItemType Directory | Out-Null
+    #Write-Host "Folder Created successfully"
+}
+
 Write-Host "Checking JWT addon..." -ForegroundColor Yellow -BackgroundColor black
 $path = "C:\Dev\godot-jwt"
 if(!(test-path -PathType container $path))
@@ -16,6 +24,7 @@ if(!(test-path -PathType container $path))
 Set-Location "c:\Dev\godot-jwt"
 git pull
 Copy-Item -R C:\Dev\godot-jwt\addons\jwt C:\Dev\space-game\addons
+Copy-Item -R C:\Dev\godot-jwt\addons\jwt C:\Dev\crater-manipulator\addons
 
 Write-Host "Checking Mirror addon..." -ForegroundColor Yellow -BackgroundColor black
 $path = "C:\Dev\godot-mirror"
@@ -38,6 +47,7 @@ if(!(test-path -PathType container $path))
 Set-Location "c:\Dev\godot-uuid"
 git pull
 Copy-Item -R C:\Dev\godot-uuid\addons\uuid C:\Dev\space-game\addons
+Copy-Item -R C:\Dev\godot-uuid\addons\uuid C:\Dev\crater-manipulator\addons
 
 Remove-Item -R -Force C:\Dev\space-game-xr\addons
 Copy-Item -R C:\Dev\space-game\addons C:\Dev\space-game-xr
