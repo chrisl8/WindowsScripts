@@ -13,6 +13,10 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 #https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host?view=powershell-7.4
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
+Write-Host "Clearing Choclatey cache" -ForegroundColor Yellow -BackgroundColor black
+Remove-Item -R -Force C:\ProgramData\ChocolateyHttpCache\*
+
+Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "Updating Choclatey packages" -ForegroundColor Yellow -BackgroundColor black
 choco upgrade all -y
 
@@ -38,14 +42,20 @@ Write-Host "Updating Windows Packages" -ForegroundColor Yellow -BackgroundColor 
 winget upgrade --all
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
+Write-Host "If you see the same update being installed every time, it may be that the 'update' did not remove the old version. Go into Control Panel->Programs adn Features and find the old versiona and manually remove it to fix this." -ForegroundColor Yellow -BackgroundColor black
+
+Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "Forcing Windows Store Update Check" -ForegroundColor Yellow -BackgroundColor black
 # https://github.com/microsoft/winget-cli/issues/2854#issuecomment-1435369342
 Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod
 
 Write-Host "" -ForegroundColor Blue -BackgroundColor black
-Write-Host "Check Video Driver version" -ForegroundColor Blue -BackgroundColor black
-&"C:\Program Files\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
-
-Write-Host "" -ForegroundColor Blue -BackgroundColor black
 Write-Host "Check for MS Store Updates" -ForegroundColor Blue -BackgroundColor black
 Start-Process ms-windows-store:
+
+$FolderName = "C:\Program Files\NVIDIA Corporation\NVIDIA GeForce Experience"
+if (Test-Path $FolderName) {
+ Write-Host "" -ForegroundColor Blue -BackgroundColor black
+ Write-Host "Check Video Driver version" -ForegroundColor Blue -BackgroundColor black
+ &"C:\Program Files\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
+}
