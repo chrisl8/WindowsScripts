@@ -20,17 +20,20 @@ Pop-Location
 
 Write-Host "Checking Godot VSCode Plugin..." -ForegroundColor Yellow -BackgroundColor black
 Push-Location "C:\Dev\godot-vscode-plugin\"
+git stash --quiet
 git fetch
 $output = git diff --name-only origin/master
 if ($output) {
     Remove-Item .\godot-tools-*.vsix
     git pull
+    git stash pop --quiet
     npm i
     npm run package
     Copy-Item .\godot-tools-*.vsix C:\Users\chris\OneDrive\allWindows\GodotEngines\godot-vs-code-plugin
     Copy-Item .\godot-tools-*.vsix "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\godot-vs-code-plugin"
     Set-Location
 } else {
+    git stash pop --quiet
     Write-Host "No changes."
 }
 Pop-Location
