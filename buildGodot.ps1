@@ -1,12 +1,14 @@
 Write-Host "Checking Godot..." -ForegroundColor Yellow -BackgroundColor black
 Push-Location "C:\Users\chris\CLionProjects\godot\"
 gh repo sync chrisl8/godot
-gh repo sync chrisl8/godot --branch 4.2
+#gh repo sync chrisl8/godot --branch 4.2
 git stash --quiet
 git fetch
-#$output = git diff --name-only origin/4.2
-$output = git diff --name-only origin/master
-if ($output) {
+$local = git rev-parse "@"
+$remote = git rev-parse "@{u}"
+if ($local -ne $remote) {
+    Write-Host "Changes found:"
+    git --no-pager log --oneline ^"$local" "$remote"
     git pull
     git stash pop --quiet
     scons production=yes
@@ -14,7 +16,7 @@ if ($output) {
     Copy-Item .\bin\* "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\custom"
 } else {
     git stash pop --quiet
-    Write-Host "No changes."
+    Write-Host "No changes found."
 }
 Pop-Location
 
@@ -22,8 +24,11 @@ Write-Host "Checking Godot VSCode Plugin..." -ForegroundColor Yellow -Background
 Push-Location "C:\Dev\godot-vscode-plugin\"
 git stash --quiet
 git fetch
-$output = git diff --name-only origin/master
-if ($output) {
+$local = git rev-parse "@"
+$remote = git rev-parse "@{u}"
+if ($local -ne $remote) {
+    Write-Host "Changes found:"
+    git --no-pager log --oneline ^"$local" "$remote"
     Remove-Item .\godot-tools-*.vsix
     git pull
     git stash pop --quiet
@@ -34,7 +39,7 @@ if ($output) {
     Set-Location
 } else {
     git stash pop --quiet
-    Write-Host "No changes."
+    Write-Host "No changes found."
 }
 Pop-Location
 
@@ -43,8 +48,11 @@ Push-Location "C:\Dev\vscode-formatter-godot\"
 gh repo sync chrisl8/vscode-formatter-godot
 git stash --quiet
 git fetch
-$output = git diff --name-only origin/main
-if ($output) {
+$local = git rev-parse "@"
+$remote = git rev-parse "@{u}"
+if ($local -ne $remote) {
+    Write-Host "Changes found:"
+    git --no-pager log --oneline ^"$local" "$remote"
     Remove-Item .\gdscript-formatter-linter-*.vsix
     git pull
     git stash pop --quiet
@@ -55,6 +63,6 @@ if ($output) {
     Set-Location
 } else {
     git stash pop --quiet
-    Write-Host "No changes."
+    Write-Host "No changes found."
 }
 Pop-Location
