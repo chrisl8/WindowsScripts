@@ -2,6 +2,8 @@
 
 These are scripts meant to be run in Windows.
 
+**I do not expect these to work generically for anyone else, but they are here if in case they can help you as examples.**
+
 # Powershell Notes
 
 ## Script Location
