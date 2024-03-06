@@ -1,4 +1,5 @@
-Write-Host "Checking Godot..." -ForegroundColor Yellow -BackgroundColor black
+param($force)
+Write-Host "Checking Godot Repository for Updates..." -ForegroundColor Yellow -BackgroundColor black
 Push-Location "C:\Users\chris\CLionProjects\godot\"
 gh repo sync chrisl8/godot
 #gh repo sync chrisl8/godot --branch 4.2
@@ -6,18 +7,24 @@ git stash --quiet
 git fetch
 $local = git rev-parse "@"
 $remote = git rev-parse "@{u}"
-if ($local -ne $remote) {
-    Write-Host "Changes found:"
-    git --no-pager log --oneline ^"$local" "$remote"
+if ($local -ne $remote -Or $force -eq "--force") {
+    Write-Host " Changes found!" -ForegroundColor Blue -BackgroundColor black
+    Write-Host "  Pulling updates for Godot..." -ForegroundColor Blue -BackgroundColor black
     git pull
     git stash pop --quiet
-    scons production=yes
+    Write-Host "  Building new version of Godot..." -ForegroundColor Blue -BackgroundColor black
+    Remove-Item -R -Force .\bin
+    scons -Q production=yes
     Copy-Item .\bin\* C:\Users\chris\OneDrive\allWindows\GodotEngines\custom\
     Copy-Item .\bin\* "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\custom"
+    Write-Host "  Built godot with the following changes:" -ForegroundColor Blue -BackgroundColor black
+    git --no-pager log --oneline ^"$local" "$remote"
 } else {
     git stash pop --quiet
     Write-Host "No changes found."
 }
+$godot_version = C:\Users\chris\OneDrive\allWindows\GodotEngines\custom\godot.windows.editor.x86_64.console.exe --version
+Write-Host "Godot version $godot_version is built and installed." -ForegroundColor Yellow -BackgroundColor black
 Pop-Location
 
 Write-Host "Checking Godot VSCode Plugin..." -ForegroundColor Yellow -BackgroundColor black
