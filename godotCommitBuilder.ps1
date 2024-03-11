@@ -24,4 +24,3 @@ Push-Location "C:\Dev\space-game-clean"
 $arguments = "-e"
 Start-Process "D:\GodotCustomBuilds\$commit\godot.windows.editor.x86_64.exe" -ArgumentList $arguments
 Pop-Location
-
