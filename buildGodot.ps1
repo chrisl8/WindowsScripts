@@ -73,3 +73,24 @@ if ($local -ne $remote) {
     Write-Host "No changes found."
 }
 Pop-Location
+
+Write-Host "Checking Godot GDScript Toolkit..." -ForegroundColor Yellow -BackgroundColor black
+Push-Location "C:\Dev\godot-gdscript-toolkit\"
+gh repo sync chrisl8/godot-gdscript-toolkit
+git stash --quiet
+git fetch
+$local = git rev-parse "@"
+$remote = git rev-parse "@{u}"
+if ($local -ne $remote) {
+    Write-Host "Changes found:"
+    git --no-pager log --oneline ^"$local" "$remote"
+    git pull
+    git stash pop --quiet
+    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "pip3 install -e C:\Dev\godot-gdscript-toolkit"
+    Copy-Item -Force -recurse "C:\Dev\godot-gdscript-toolkit" "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\"
+    Set-Location
+} else {
+    git stash pop --quiet
+    Write-Host "No changes found."
+}
+Pop-Location
