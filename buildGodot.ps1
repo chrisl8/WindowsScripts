@@ -15,6 +15,7 @@ if ($local -ne $remote -Or $force -eq "--force") {
     Write-Host "  Building new version of Godot..." -ForegroundColor Blue -BackgroundColor black
     Remove-Item -R -Force .\bin
     scons -Q production=yes
+    scons -Q production=yes target=template_release
     Copy-Item .\bin\* C:\Users\chris\OneDrive\allWindows\GodotEngines\custom\
     Copy-Item .\bin\* "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\custom"
     Write-Host "  Built godot with the following changes:" -ForegroundColor Blue -BackgroundColor black
@@ -87,6 +88,7 @@ if ($local -ne $remote) {
     git pull
     git stash pop --quiet
     Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "pip3 install -e C:\Dev\godot-gdscript-toolkit"
+    Copy-Item -Force -recurse "C:\Dev\godot-gdscript-toolkit"  "C:\Users\chris\OneDrive\allWindows\GodotEngines\"
     Copy-Item -Force -recurse "C:\Dev\godot-gdscript-toolkit" "C:\Users\chris\OneDrive\Ben + Dad - Shared Folder\GodotEngines\"
     Set-Location
 } else {
