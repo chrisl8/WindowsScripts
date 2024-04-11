@@ -42,7 +42,7 @@ Write-Host "Updating Windows Packages" -ForegroundColor Yellow -BackgroundColor 
 winget upgrade --all
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
-Write-Host "If you see the same update being installed every time, it may be that the 'update' did not remove the old version. Go into Control Panel->Programs adn Features and find the old versiona and manually remove it to fix this." -ForegroundColor Yellow -BackgroundColor black
+Write-Host "If you see the same update being installed every time, it may be that the 'update' did not remove the old version. Go into Control Panel->Programs and Features and find the old versiona and manually remove it to fix this." -ForegroundColor Yellow -BackgroundColor black
 
 Write-Host "" -ForegroundColor Yellow -BackgroundColor black
 Write-Host "Forcing Windows Store Update Check" -ForegroundColor Yellow -BackgroundColor black

@@ -21,3 +21,14 @@ Import modules from any folder:
 https://stackoverflow.com/a/21139850/4982408
 `import-module .\powershell_modules\set-scaling.psm1`
 
+# AutoHotKey Notes
+
+Some of these scripts require AutoHotkey to be in your path.  
+I like to build it from source:  
+https://github.com/AutoHotkey/AutoHotkey
+
+It is pretty easy to build by opening the project in the free MS Visual Studio Community Edition and finding the right Build entry in the menu.  
+You may have to set the dropdowns to "Release" and "x64" before building.  
+Then use Build -> Build Solution.
+
+You should find the executable in the `bin` folder when you got it right.

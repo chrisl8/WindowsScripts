@@ -1,6 +1,7 @@
 param($force)
 Write-Host "Checking Godot Repository for Updates..." -ForegroundColor Yellow -BackgroundColor black
 Push-Location "C:\Users\chris\CLionProjects\godot\"
+git checkout master
 gh repo sync chrisl8/godot
 #gh repo sync chrisl8/godot --branch 4.2
 git stash --quiet
@@ -13,7 +14,9 @@ if ($local -ne $remote -Or $force -eq "--force") {
     git pull
     git stash pop --quiet
     Write-Host "  Building new version of Godot..." -ForegroundColor Blue -BackgroundColor black
-    Remove-Item -R -Force .\bin
+    if (Test-Path 'bin') {
+        Remove-Item -Recurse -Force 'bin'
+    }
     scons -Q production=yes
     scons -Q production=yes target=template_release
     Copy-Item .\bin\* C:\Users\chris\OneDrive\allWindows\GodotEngines\custom\
